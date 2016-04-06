@@ -236,7 +236,7 @@ def n2w(n):
     n = str(n).replace(',', '.')
     if '.' in n:
         left, right = n.split('.')
-        return u'%s kablelis %s' % (int2word(int(left)), int2word(int(right)))
+        return u'%s komats %s' % (int2word(int(left)), int2word(int(right)))
     else:
         return int2word(int(n))
 
