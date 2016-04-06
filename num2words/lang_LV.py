@@ -159,6 +159,15 @@ CURRENCIES = {
     'EUR': (
         (u'eiro', u'eiro', u'eiro'), (u'cents', u'centi', u'centu')
     ),
+    'USD': (
+        (u'dolārs', u'dolāri', u'dolāru'), (u'cents', u'centi', u'centu')
+    ),
+    'GBP': (
+        (u'mārciņa', u'mārciņas', u'mārciņu'), (u'penijs', u'peniji', u'peniju')
+    ),
+    'RUB': (
+        (u'rublis', u'rubļi', u'rubļu'), (u'kapeika', u'kapeikas', u'kapeiku')
+    ),
 }
 
 
