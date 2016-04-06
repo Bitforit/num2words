@@ -236,7 +236,7 @@ def int2word(n, feminine=False):
 
         if n3 > 0:
             words.append(HUNDREDS[n3][0])
-            
+
         if n2 > 1:
             words.append(TWENTIES[n2][0])
 
@@ -309,6 +309,10 @@ class Num2Word_RU(object):
     def to_ordinal(self, number):
         raise NotImplementedError()
 
+
+class Num2Currency_RU(object):
+    def convert(self, number, currency):
+        return to_currency(number, currency)
 
 if __name__ == '__main__':
     import doctest

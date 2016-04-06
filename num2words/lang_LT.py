@@ -269,6 +269,11 @@ class Num2Word_LT(object):
     def to_ordinal(self, number):
         raise NotImplementedError()
 
+
+class Num2Currency_LT(object):
+    def convert(self, number, currency):
+        return to_currency(number, currency)
+
 if __name__ == '__main__':
     import doctest
     doctest.testmod()

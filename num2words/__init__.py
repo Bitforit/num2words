@@ -19,6 +19,9 @@ from __future__ import unicode_literals
 from . import lang_EN
 from . import lang_EN_GB
 from . import lang_EN_IN
+from . import lang_EN_EUR
+from . import lang_EN_USD
+from . import lang_EN_RUB
 from . import lang_FR
 from . import lang_FR_CH
 from . import lang_DE
@@ -31,6 +34,7 @@ from . import lang_ID
 from . import lang_NO
 from . import lang_DK
 from . import lang_PT_BR
+
 
 CONVERTER_CLASSES = {
     'en': lang_EN.Num2Word_EN(),
@@ -49,6 +53,37 @@ CONVERTER_CLASSES = {
     'dk': lang_DK.Num2Word_DK(),
     'pt_BR': lang_PT_BR.Num2Word_PT_BR(),
 }
+
+
+class Num2Currency_EN(object):
+    def convert(self, number, currency):
+        if currency == 'EUR':
+            lng = lang_EN_EUR.Num2Word_EN_EUR()
+        elif currency == 'GBP':
+            lng = lang_EN_GB.Num2Word_EN_GB()
+        elif currency == 'USD':
+            lng = lang_EN_USD.Num2Word_EN_USD()
+        elif currency == 'RUB':
+            lng = lang_EN_RUB.Num2Word_EN_RUB()
+        else:
+            raise NotImplementedError()
+        number = int('{0:.2f}'.format(number).replace('.', ''))
+        return lng.to_currency(number)
+
+
+CONVERT_CLASSES_CURRENCY = {
+    'lv': lang_LV.Num2Currency_LV(),
+    'lt': lang_LT.Num2Currency_LT(),
+    'ru': lang_RU.Num2Currency_RU(),
+    'en': Num2Currency_EN(),
+}
+
+
+def to_currency(number, lang, currency):
+    if lang not in CONVERT_CLASSES_CURRENCY:
+        raise NotImplementedError()
+    return CONVERT_CLASSES_CURRENCY[lang].convert(number, currency)
+
 
 def num2words(number, ordinal=False, lang='en'):
     # We try the full language first

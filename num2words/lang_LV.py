@@ -289,6 +289,10 @@ class Num2Word_LV(object):
         raise NotImplementedError()
 
 
+class Num2Currency_LV(object):
+    def convert(self, number, currency):
+        return to_currency(number, currency, False)
+
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
