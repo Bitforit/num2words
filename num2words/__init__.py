@@ -67,7 +67,6 @@ class Num2Currency_EN(object):
             lng = lang_EN_RUB.Num2Word_EN_RUB()
         else:
             raise NotImplementedError()
-        number = int('{0:.2f}'.format(number).replace('.', ''))
         return lng.to_currency(number)
 
 
