@@ -143,7 +143,21 @@ THOUSANDS = {
 }
 
 CURRENCIES = {
-    'LTL': ((u'litas', u'litai', u'litų'), (u'centas', u'centai', u'centų')),
+    'LTL': (
+        (u'litas', u'litai', u'litų'), (u'centas', u'centai', u'centų')
+    ),
+    'EUR': (
+        (u'euras', u'eurai', u'eurų'), (u'centas', u'centai', u'centų')
+    ),
+    'USD': (
+        (u'doleris', u'doleriai', u'dolerių'), (u'centas', u'centai', u'centų')
+    ),
+    'GBP': (
+        (u'svaras', u'svarai', u'svarų'), (u'pensas', u'pensai', u'pensų')
+    ),
+    'RUB': (
+        (u'rublis', u'rubliai', u'rublių'), (u'kapeika', u'kapeikos', u'kapeikų')
+    ),
 }
 
 
