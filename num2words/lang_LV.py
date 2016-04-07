@@ -14,89 +14,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301 USA
-u"""
->>> from textwrap import fill
 
->>> ' '.join([str(i) for i in splitby3('1')])
-u'1'
->>> ' '.join([str(i) for i in splitby3('1123')])
-u'1 123'
->>> ' '.join([str(i) for i in splitby3('1234567890')])
-u'1 234 567 890'
-
->>> print(' '.join([n2w(i) for i in range(10)]))
-nulle viens divi trīs četri pieci seši septiņi astoņi deviņi
-
->>> print(fill(' '.join([n2w(i+10) for i in range(10)])))
-desmit vienpadsmit divpadsmit trīspadsmit četrpadsmit piecpadsmit
-sešpadsmit septiņpadsmit astoņpadsmit deviņpadsmit
-
->>> print(fill(' '.join([n2w(i*10) for i in range(10)])))
-nulle desmit divdesmit trīsdesmit četrdesmit piecdesmit sešdesmit
-septiņdesmit astoņdesmit deviņdesmit
-
->>> print(n2w(100))
-simts
->>> print(n2w(101))
-simtu viens
->>> print(n2w(110))
-simts desmit
->>> print(n2w(115))
-simts piecpadsmit
->>> print(n2w(123))
-simts divdesmit trīs
->>> print(n2w(1000))
-tūkstotis
->>> print(n2w(1001))
-tūkstotis viens
->>> print(n2w(2012))
-divi tūkstoši divpadsmit
-
->>> print(fill(n2w(1234567890)))
-miljards divi simti trīsdesmit četri miljoni pieci simti sešdesmit
-septiņi tūkstoši astoņi simti deviņdesmit
-
->>> print(fill(n2w(215461407892039002157189883901676)))
-divi simti piecpadsmit nontiljoni četri simti sešdesmit viens
-oktiljons četri simti septiņi septiljoni astoņi simti deviņdesmit divi
-sikstiljoni trīsdesmit deviņi kvintiljoni divi kvadriljoni simts
-piecdesmit septiņi triljoni simts astoņdesmit deviņi miljardi astoņi
-simti astoņdesmit trīs miljoni deviņi simti viens tūkstotis seši simti
-septiņdesmit seši
-
->>> print(fill(n2w(719094234693663034822824384220291)))
-septiņi simti deviņpadsmit nontiljoni deviņdesmit četri oktiljoni divi
-simti trīsdesmit četri septiljoni seši simti deviņdesmit trīs
-sikstiljoni seši simti sešdesmit trīs kvintiljoni trīsdesmit četri
-kvadriljoni astoņi simti divdesmit divi triljoni astoņi simti
-divdesmit četri miljardi trīs simti astoņdesmit četri miljoni divi
-simti divdesmit tūkstoši divi simti deviņdesmit viens
-
-# TODO: fix this:
-# >>> print(fill(n2w(1000000000000000000000000000000)))
-# nontiljons
-
->>> print(to_currency(1.0, 'EUR'))
-viens eiro, nulle centu
-
->>> print(to_currency(1.0, 'LVL'))
-viens lats, nulle santīmu
-
->>> print(to_currency(1234.56, 'EUR'))
-tūkstotis divi simti trīsdesmit četri eiro, piecdesmit seši centi
-
->>> print(to_currency(1234.56, 'LVL'))
-tūkstotis divi simti trīsdesmit četri lati, piecdesmit seši santīmi
-
->>> print(to_currency(10111, 'EUR', seperator=' un'))
-simtu viens eiro un vienpadsmit centi
-
->>> print(to_currency(10121, 'LVL', seperator=' un'))
-simtu viens lats un divdesmit viens santīms
-
->>> print(to_currency(-1251985, cents = False))
-mīnus divpadsmit tūkstoši pieci simti deviņpadsmit eiro, 85 centi
-"""
 from __future__ import unicode_literals
 
 ZERO = (u'nulle',)
@@ -207,13 +125,9 @@ def int2word(n):
         i -= 1
         n1, n2, n3 = get_digits(x)
 
-        # print str(n3) + str(n2) + str(n1)
-
         if n3 > 0:
-            if n3 == 1 and n2 == 0 and n1 > 0:
-                words.append(HUNDRED[2])
-            elif n3 > 1:
-                words.append(ONES[n3][0])
+            words.append(ONES[n3][0])
+            if n3 > 1:
                 words.append(HUNDRED[1])
             else:
                 words.append(HUNDRED[0])
@@ -223,7 +137,7 @@ def int2word(n):
 
         if n2 == 1:
             words.append(TENS[n1][0])
-        elif n1 > 0 and not (i > 0 and x == 1):
+        elif n1 > 0:
             words.append(ONES[n1][0])
 
         if i > 0:
